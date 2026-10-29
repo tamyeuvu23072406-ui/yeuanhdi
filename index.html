@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#fff0f3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Dành cho vợ yêu ♥ Thanh Tâm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@500;600;700&display=swap&subset=vietnamese" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<button id="sndBtn" class="icon-btn" aria-label="Bật/tắt nhạc & âm thanh">🔊</button>
+
+<!-- CỔNG VÀO -->
+<main id="gate" class="screen active">
+  <div class="card center gate-card">
+    <div class="envelope">💌</div>
+    <h1 class="script">Dành cho vợ yêu</h1>
+    <p class="gate-desc">Có một món quà nhỏ đang đợi <b>Phan Thị Thanh Tâm</b>.<br>Nhập <b>ngày + tháng mình chính thức yêu nhau</b> để mở nhé (4 chữ số).</p>
+    <input id="pw" type="tel" inputmode="numeric" maxlength="4" placeholder="_ _ _ _" autocomplete="off">
+    <button id="pwBtn" class="btn">Mở quà ♥</button>
+    <p id="pwMsg" class="hint"></p>
+  </div>
+</main>
+
+<!-- TRANG CHỦ -->
+<main id="home" class="screen">
+  <div class="wrap">
+    <header class="hero">
+      <div class="avatar"><img src="images/portrait.jpg" alt="Vũ và Tâm"></div>
+      <p class="small">Chồng Vũ gửi vợ yêu</p>
+      <h1 class="script big">Thanh Tâm của chồng ♥</h1>
+      <p class="small">Mình đã yêu nhau được</p>
+      <div id="counter" class="counter"></div>
+      <p class="small next-event" id="nextEvent"></p>
+    </header>
+
+    <section class="progress">
+      <div id="progBar"></div>
+      <span id="progTxt"></span>
+    </section>
+
+    <section class="menu">
+      <button class="tile" data-go="catch">
+        <span class="emo">💘</span>
+        <b>Hứng tim cho chồng</b>
+        <small>Hứng đủ 30 trái tim</small>
+        <i class="tick"></i>
+      </button>
+      <button class="tile" data-go="moments">
+        <span class="emo">📸</span>
+        <b>Khoảnh khắc yêu</b>
+        <small>Mở từng tấm ảnh & lời nhắn</small>
+        <i class="tick"></i>
+      </button>
+      <button class="tile" data-go="quiz">
+        <span class="emo">📝</span>
+        <b>Vợ chồng thân thiết</b>
+        <small>8 câu hỏi của tình yêu</small>
+        <i class="tick"></i>
+      </button>
+      <button class="tile" data-go="gift">
+        <span class="emo">🎁</span>
+        <b>Hộp quà đặc quyền</b>
+        <small>9 phiếu dành riêng cho vợ</small>
+        <i class="tick"></i>
+      </button>
+      <button class="tile wide locked" id="letterTile" data-go="letter">
+        <span class="emo">💌</span>
+        <b>Lá thư của chồng</b>
+        <small id="letterSmall">Hoàn thành 3 trò đầu để mở khóa</small>
+        <i class="tick"></i>
+      </button>
+    </section>
+
+    <p class="foot">Làm bằng cả trái tim bởi Nguyễn Tiến Vũ ♥ 2026</p>
+  </div>
+</main>
+
+<!-- HỨNG TIM -->
+<main id="catch" class="screen">
+  <div class="topbar">
+    <button class="back" data-back>‹ Về</button>
+    <b>Hứng tim cho chồng</b>
+    <span id="catchScore">0/30</span>
+  </div>
+  <div class="gamebox">
+    <canvas id="cv"></canvas>
+    <div id="catchOverlay" class="overlay">
+      <div class="card center">
+        <h2 class="script">Hứng tim nào vợ ơi!</h2>
+        <p>Kéo ngón tay (hoặc chuột / phím ← →) để di chuyển giỏ.<br>
+        💗 +1 &nbsp; 💖 +3 &nbsp; 💔 mất 1 mạng (có 3 mạng).<br>
+        Hứng đủ <b>30 điểm</b> là thắng!</p>
+        <button class="btn" id="catchStart">Bắt đầu</button>
+      </div>
+    </div>
+  </div>
+  <div class="lives" id="lives">❤️❤️❤️</div>
+</main>
+
+<!-- KHOẢNH KHẮC YÊU (trò mới thay lật hình) -->
+<main id="moments" class="screen">
+  <div class="topbar">
+    <button class="back" data-back>‹ Về</button>
+    <b>Khoảnh khắc yêu</b>
+    <span id="momCount">0/8</span>
+  </div>
+  <div class="wrap">
+    <p class="hint center mom-hint">Chạm vào từng tấm ảnh để mở và đọc lời nhắn của chồng nhé 🥰</p>
+    <div id="momGrid" class="mom-grid"></div>
+  </div>
+</main>
+
+<!-- QUIZ -->
+<main id="quiz" class="screen">
+  <div class="topbar">
+    <button class="back" data-back>‹ Về</button>
+    <b>Vợ chồng thân thiết</b>
+    <span id="quizNo"></span>
+  </div>
+  <div class="wrap"><div id="quizBox" class="card"></div></div>
+</main>
+
+<!-- HỘP QUÀ -->
+<main id="gift" class="screen">
+  <div class="topbar">
+    <button class="back" data-back>‹ Về</button>
+    <b>Hộp quà đặc quyền</b>
+    <span id="giftCount"></span>
+  </div>
+  <div class="wrap">
+    <p class="hint center">Chạm vào từng hộp quà để mở. Phiếu có hiệu lực mãi mãi, không hết hạn!</p>
+    <div id="giftGrid" class="gift-grid"></div>
+  </div>
+</main>
+
+<!-- THƯ -->
+<main id="letter" class="screen">
+  <div class="topbar">
+    <button class="back" data-back>‹ Về</button>
+    <b>Lá thư của chồng</b>
+    <span></span>
+  </div>
+  <div class="wrap">
+    <div class="card paper">
+      <div id="letterText" class="letter-text"></div>
+    </div>
+    <div id="afterLetter" class="hidden">
+      <img class="full" src="images/letter.jpg" alt="Gửi người tôi yêu">
+      <h2 class="script center">Những khoảnh khắc của mình</h2>
+      <img class="full" src="images/collage-wedding.jpg" alt="Ảnh của hai đứa">
+      <img class="full" src="images/collage-memories.jpg" alt="Ảnh của hai đứa">
+      <img class="full" src="images/collage-album.jpg" alt="Album hẹn hò">
+      <p class="center script big forever">Mãi yêu vợ ♥</p>
+      <button class="btn" id="replayHearts">Thả thêm tim 💞</button>
+    </div>
+  </div>
+</main>
+
+<div id="modal" class="modal hidden">
+  <div class="card center" id="modalBox"></div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
